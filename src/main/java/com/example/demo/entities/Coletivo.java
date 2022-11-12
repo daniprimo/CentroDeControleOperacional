@@ -2,6 +2,7 @@ package com.example.demo.entities;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,9 +16,13 @@ public class Coletivo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(nullable = false)
 	private String placa;
+	@Column(nullable = false)
 	private String prefixo;
+	@Column(nullable = false)
 	private String modelo;
+	@Column(nullable = false)
 	private String doc;
 	
 	public Coletivo() {

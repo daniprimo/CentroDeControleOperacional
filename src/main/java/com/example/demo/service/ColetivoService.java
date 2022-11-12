@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Coletivo;
+import com.example.demo.exceptions.ColetivoNaoFoiSalvoException;
 import com.example.demo.exceptions.EntityNotFoundException;
 import com.example.demo.repository.ColetivoRepository;
 
@@ -19,12 +20,16 @@ public class ColetivoService {
 	}
 	
 	public List<Coletivo> listaColetivos () {
-		return coletivoRepository.findAll();
+			return coletivoRepository.findAll();
 	}
 	
 	
 	public Coletivo adicionar (Coletivo coletivo) {
-		return coletivoRepository.save(coletivo);
+		try {
+			return coletivoRepository.save(coletivo);			
+		}catch (Exception e) {
+			throw new ColetivoNaoFoiSalvoException("Coletivo não foi salvo");
+		}	
 	}
 	
 	public Coletivo pesquisarColetivoPorId (Long id) {
