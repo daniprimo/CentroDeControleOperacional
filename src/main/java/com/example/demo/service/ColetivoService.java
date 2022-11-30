@@ -6,6 +6,9 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Coletivo;
+import com.example.demo.exceptions.ColetivoComDocumentoCitadaJaExiste;
+import com.example.demo.exceptions.ColetivoComPlacaCitadaJaExiste;
+import com.example.demo.exceptions.ColetivoComPrefixoCitadoJaExiste;
 import com.example.demo.exceptions.ColetivoNaoFoiSalvoException;
 import com.example.demo.exceptions.EntityNotFoundException;
 import com.example.demo.repository.ColetivoRepository;
@@ -32,6 +35,33 @@ public class ColetivoService {
 		}	
 	}
 	
+	private void validarSeJaExisteDocumento(Coletivo coletivo) {
+		Optional<Coletivo> resposta =  coletivoRepository.findByDoc(coletivo.getDoc());
+		System.out.println(resposta.get().getDoc());
+		System.out.println(coletivo.getDoc());
+		if(resposta.get().getDoc() == coletivo.getDoc()) {
+			throw new ColetivoComDocumentoCitadaJaExiste("Documento ja existente");		
+			
+		}
+	}
+
+	private void valiadarSeJaExistePrefixo(Coletivo coletivo) {
+		Optional<Coletivo> resposta =  coletivoRepository.findByPrefixo(coletivo.getPrefixo());
+		if(resposta.isPresent() && !resposta.get().getPrefixo().equals(coletivo.getPrefixo()))
+			throw new ColetivoComPrefixoCitadoJaExiste("Prefixo ja existente");		
+	}
+
+	private void validarSeJaExistePlaca(Coletivo coletivo) {
+		Optional<Coletivo> resposta =  coletivoRepository.findByPlaca(coletivo.getPlaca());
+		String p1 = resposta.get().getPlaca();
+		String p2 = coletivo.getPlaca();
+		if(p1 == p2) {
+			throw new ColetivoComPlacaCitadaJaExiste("Placa ja existente");
+			
+		}
+	}
+
+	
 	public Coletivo pesquisarColetivoPorId (Long id) {
 		Optional<Coletivo> optional = coletivoRepository.findById(id);
 		return optional.orElseThrow(()  -> new EntityNotFoundException("Coletivo não encontrado"));
@@ -40,7 +70,7 @@ public class ColetivoService {
 	public Coletivo pesquisarColetivoPorPrefixo (String prefixo) {
 		Optional<Coletivo> optional = coletivoRepository.findByPrefixo(prefixo);
 		return optional.orElseThrow(()  -> new EntityNotFoundException("Coletivo não encontrado"));
-	}
+	} 
 
 	public Coletivo pesquisarColetivoPorPlaca (String placa) {
 		Optional<Coletivo> optional = coletivoRepository.findByPlaca(placa);

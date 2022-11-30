@@ -13,4 +13,7 @@ public interface ColetivoRepository extends JpaRepository<Coletivo, Long> {
 	Optional<Coletivo> findByPrefixo (String Prefixo);
 
 	Optional<Coletivo> findByPlaca (String placa);
+
+	Optional<Coletivo> findByDoc (String doc);
+	
 }

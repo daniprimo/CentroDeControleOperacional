@@ -2,6 +2,7 @@ package com.example.demo.exceptions;
 
 import java.time.Instant;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
@@ -40,6 +41,39 @@ public class AplicacaoException extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(ColetivoNaoFoiSalvoException.class)
 	public ResponseEntity<StandartError> coletivoNaoFoiSalvo(ColetivoNaoFoiSalvoException e, HttpServletRequest request){
+		StandartError err = new StandartError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(HttpStatus.NOT_FOUND.value());
+		err.setError("Verifique se todos os campos estão completos");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+	}
+	
+	@ExceptionHandler(ColetivoComPlacaCitadaJaExiste.class)
+	public ResponseEntity<StandartError> ColetivoComPlcaExistente (ColetivoComPlacaCitadaJaExiste e, HttpServletRequest request) {
+		StandartError err = new StandartError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(HttpStatus.NOT_FOUND.value());
+		err.setError("Verifique se todos os campos estão completos");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+	}
+	
+	@ExceptionHandler(ColetivoComDocumentoCitadaJaExiste.class)
+	public ResponseEntity<StandartError> ColetivoComDocumentoExistente (ColetivoComDocumentoCitadaJaExiste e, HttpServletRequest request) {
+		StandartError err = new StandartError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(HttpStatus.NOT_FOUND.value());
+		err.setError("Verifique se todos os campos estão completos");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+	}
+	
+	@ExceptionHandler(ColetivoComPrefixoCitadoJaExiste.class)
+	public ResponseEntity<StandartError> ColetivoComPrefixoExistente (ColetivoComPrefixoCitadoJaExiste e, HttpServletRequest request) {
 		StandartError err = new StandartError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(HttpStatus.NOT_FOUND.value());

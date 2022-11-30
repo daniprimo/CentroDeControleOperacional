@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,8 +34,9 @@ public class ColetivoController {
 	}
 
 	@GetMapping
-	public List<Coletivo> listarColetivos() {
-		return coletivoService.listaColetivos();
+	public ResponseEntity<List<Coletivo>> listarColetivos() {
+		 coletivoService.listaColetivos();
+		 return ResponseEntity.ok(coletivoService.listaColetivos());
 	}
 	
 	@PostMapping
@@ -48,6 +50,12 @@ public class ColetivoController {
 	@GetMapping("{id}")
 	public ResponseEntity<Coletivo> consultarColetivoPeloId(@PathVariable Long id){
 		Coletivo coletivo = coletivoService.pesquisarColetivoPorId(id);
+		return ResponseEntity.ok(coletivo);
+	}
+	
+	@GetMapping("{placa}")
+	public ResponseEntity<Coletivo> consultarColetivoPelaPlaca(@RequestParam String placa){
+		Coletivo coletivo = coletivoService.pesquisarColetivoPorPlaca(placa);
 		return ResponseEntity.ok(coletivo);
 	}
 	
