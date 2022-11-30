@@ -1,0 +1,19 @@
+.button button {
+    margin-top: 2%;
+    background-color: #ffff;
+    font-size: 80%;
+    padding: 1%;
+    border-radius: 20%;
+    margin-left: 80%;
+    border: 2px solid #e7e7e7;
+    cursor: pointer;
+}
+
+.button button:hover {
+    background-color: rgba(187, 173, 173, 0.74);
+}
+
+.button button:active {
+    background-color: rgba(187, 173, 173, 0.74);
+    transform: translate(2px);
+}

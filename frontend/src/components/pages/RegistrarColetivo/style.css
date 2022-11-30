@@ -1,0 +1,201 @@
+.paiDeTodos {
+    display: flex;
+    flex-grow: row;
+}
+
+.cardPrincipal {
+    background-color: #0000006a;
+    border-radius: 10px;
+    padding: 30px 10px;
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-right: 2%;
+    height: 100%;
+    flex: auto;
+
+}
+
+.divTable {    
+    border-radius: 5%;
+    overflow: auto;
+    height: 80vh;
+    width: 100%;
+    margin-top: 2%;
+    padding: 30px 10px;
+    border: 1px solid;
+    margin-right: 2%;
+
+}
+
+.tabelaColetivo {
+    width: 100%;
+    border-radius: 5%;
+    text-align: center;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: 1px solid;
+}
+
+.tabelaColetivo td  {
+    width: 15%;
+}
+
+.divTable thead {
+    height: 55px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
+
+    
+}
+
+.divTable thead  tr th {
+    width: 20%;
+    border: 1px solid;
+}
+
+.divTable tbody {
+    width: 20%;
+    height: 40px;
+    font-size: 13px;
+    text-align: center;
+    /* color: aliceblue; */
+}
+
+.tdId td {
+    width: 19%;
+    height: 74px;
+
+}
+
+.tdId button {
+    justify-content: center;
+    align-items: center;
+    margin-top: 55%;
+    margin-left: 100%;
+}
+
+.divTable tbody tr:hover > td {
+    background-color: #d3d2d2c4;
+}
+
+.divTable tbody tr:hover > button {
+    background-color: #d3d2d2c4;
+}
+/* .divTable {
+    background-color: #0000006a;
+    height: 80vh;
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-right: 2%;
+    min-height: 50vh;
+    width: 100%;
+    border-radius: 10px;
+    padding: 30px 10px;
+    flex: auto;
+    overflow: auto;
+
+}
+
+.tabelaColetivo {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+
+.divTable thead {
+    height: 55px;
+    font-size: 16px;
+    font-weight: 700;
+    color: aliceblue;
+
+}
+
+.divTable tbody {
+    height: 55px;
+    font-size: 18px;
+    text-align: center;
+    color: aliceblue;
+}
+
+.divTable tbody tr {
+    height: 74px;
+    border-top: 1px solid #0000006a;
+}
+
+.divTable tbody tr:hover > td {
+    background-color: #0000006a;
+}
+
+.divTable tbody tr:nth-child(odd) {
+    background-color: #6e5e5e6a;
+}
+
+.show576 {
+    display: none;
+}
+
+.show992 {
+    display: none;
+}
+
+@media (min-width: 576px) {
+    .show576 {
+        display: table-cell;
+    }
+
+    .dsmeta-card {
+        padding: 35px;
+    }
+
+    .dsmeta-sales-table tbody tr {
+        height: 55px;
+    }
+
+    .dsmeta-sales-table tbody {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 992px) {
+    .show992 {
+        display: table-cell;
+    }
+} */
+
+input[type=text] {
+    width: 100%;
+    padding: 3%;
+    box-sizing: border-box;
+}
+
+select {
+    width: 100%;
+    padding: 3%;
+    box-sizing: border-box;
+}
+
+label {
+    color: #fff;    
+}
+
+h1 {
+    color: #fff;    
+    padding-bottom: 3%;
+}
+
+
+
+.cardPrincipal h1 {
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+
+
+.inputStatus {
+    background-color: #0000;
+    margin-left: 2%;
+    
+}
