@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,12 +23,14 @@ import com.example.demo.entities.Coletivo;
 import com.example.demo.exceptions.EntityNotFoundException;
 import com.example.demo.repository.ColetivoRepository;
 import com.example.demo.service.ColetivoService;
+import com.example.demo.service.validacoes.ValidacoesColetivo;
 
 @RestController
 @RequestMapping("/coletivo")
 public class ColetivoController {
 	
-	
+	@Autowired
+	@Lazy
 	private ColetivoService coletivoService;
 	
 	public ColetivoController(ColetivoService coletivoService) {
@@ -42,19 +46,19 @@ public class ColetivoController {
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ResponseEntity<Coletivo> adiionarColetivo(@RequestBody Coletivo coletivo) {
-				Coletivo criado = coletivoService.adicionar(coletivo);
-				return ResponseEntity.ok(criado);		
+				Coletivo coletivoAlterado = coletivoService.adicionar(coletivo);
+				return ResponseEntity.ok(coletivoAlterado);		
 		
 	}
 	
-	@GetMapping("{id}")
+	@GetMapping("id={id}")
 	public ResponseEntity<Coletivo> consultarColetivoPeloId(@PathVariable Long id){
 		Coletivo coletivo = coletivoService.pesquisarColetivoPorId(id);
 		return ResponseEntity.ok(coletivo);
 	}
 	
-	@GetMapping("{placa}")
-	public ResponseEntity<Coletivo> consultarColetivoPelaPlaca(@RequestParam String placa){
+	@GetMapping("placa={placa}")
+	public ResponseEntity<Coletivo> consultarColetivoPelaPlaca(@PathVariable String placa){
 		Coletivo coletivo = coletivoService.pesquisarColetivoPorPlaca(placa);
 		return ResponseEntity.ok(coletivo);
 	}

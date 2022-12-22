@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Coletivo;
@@ -11,17 +12,26 @@ import com.example.demo.exceptions.ColetivoComPlacaCitadaJaExiste;
 import com.example.demo.exceptions.ColetivoComPrefixoCitadoJaExiste;
 import com.example.demo.exceptions.ColetivoNaoFoiSalvoException;
 import com.example.demo.exceptions.EntityNotFoundException;
+import com.example.demo.exceptions.excessoes.DocumentoExistenteException;
+import com.example.demo.exceptions.excessoes.PlacaExistenteException;
+import com.example.demo.exceptions.excessoes.PrefixoExistenteException;
 import com.example.demo.repository.ColetivoRepository;
+import com.example.demo.service.validacoes.ValidacoesColetivo;
 
 @Service
-public class ColetivoService {
+public class ColetivoService extends ValidacoesColetivo {
 	
+	@Autowired
 	private ColetivoRepository coletivoRepository;
 
-	public ColetivoService(ColetivoRepository coletivoRepository) {
-		this.coletivoRepository = coletivoRepository;
-	}
 	
+	
+	public ColetivoService(ColetivoRepository coletivoRepository, ColetivoRepository coletivoRepository2) {
+		super(coletivoRepository);
+		coletivoRepository = coletivoRepository2;
+	}
+
+
 	public List<Coletivo> listaColetivos () {
 			return coletivoRepository.findAll();
 	}
@@ -29,37 +39,19 @@ public class ColetivoService {
 	
 	public Coletivo adicionar (Coletivo coletivo) {
 		try {
+			ValidacaoSeExisteInformaçõesRepetidas(coletivo);
 			return coletivoRepository.save(coletivo);			
-		}catch (Exception e) {
+		}catch (PrefixoExistenteException e) {
+			throw new ColetivoComPrefixoCitadoJaExiste("Prefixo já existente");
+		}catch (PlacaExistenteException e) {
+			throw new ColetivoComPlacaCitadaJaExiste("Placa já existente");
+		}catch (DocumentoExistenteException e) {
+			throw new ColetivoComDocumentoCitadaJaExiste("Documento já existente");
+		}
+		catch (Exception e) {		
 			throw new ColetivoNaoFoiSalvoException("Coletivo não foi salvo");
 		}	
-	}
-	
-	private void validarSeJaExisteDocumento(Coletivo coletivo) {
-		Optional<Coletivo> resposta =  coletivoRepository.findByDoc(coletivo.getDoc());
-		System.out.println(resposta.get().getDoc());
-		System.out.println(coletivo.getDoc());
-		if(resposta.get().getDoc() == coletivo.getDoc()) {
-			throw new ColetivoComDocumentoCitadaJaExiste("Documento ja existente");		
-			
-		}
-	}
-
-	private void valiadarSeJaExistePrefixo(Coletivo coletivo) {
-		Optional<Coletivo> resposta =  coletivoRepository.findByPrefixo(coletivo.getPrefixo());
-		if(resposta.isPresent() && !resposta.get().getPrefixo().equals(coletivo.getPrefixo()))
-			throw new ColetivoComPrefixoCitadoJaExiste("Prefixo ja existente");		
-	}
-
-	private void validarSeJaExistePlaca(Coletivo coletivo) {
-		Optional<Coletivo> resposta =  coletivoRepository.findByPlaca(coletivo.getPlaca());
-		String p1 = resposta.get().getPlaca();
-		String p2 = coletivo.getPlaca();
-		if(p1 == p2) {
-			throw new ColetivoComPlacaCitadaJaExiste("Placa ja existente");
-			
-		}
-	}
+	}	
 
 	
 	public Coletivo pesquisarColetivoPorId (Long id) {
@@ -96,13 +88,13 @@ public class ColetivoService {
 	}
 	
 	public void deletarColetivoPorId (Long id) {
-		Coletivo coletivo = pesquisarColetivoPorId(id);
-		coletivoRepository.delete(coletivo);
+		Coletivo coletivoAtual = pesquisarColetivoPorId(id);
+		coletivoRepository.delete(coletivoAtual);
 	}
 	
 	public void deletarColetivoPorPrefixo (String  prefixo) {
-		Coletivo coletivo = pesquisarColetivoPorPrefixo(prefixo);
-		coletivoRepository.delete(coletivo);
+		Coletivo coletivoAtual = pesquisarColetivoPorPrefixo(prefixo);
+		coletivoRepository.delete(coletivoAtual);
 	}
 	
 }

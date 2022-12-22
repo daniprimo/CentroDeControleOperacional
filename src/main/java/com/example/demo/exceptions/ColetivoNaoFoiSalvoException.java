@@ -1,5 +1,7 @@
 package com.example.demo.exceptions;
 
+import com.example.demo.exceptions.excessoes.ColetivoException;
+
 public class ColetivoNaoFoiSalvoException extends ColetivoException {
 
 	/**

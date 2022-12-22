@@ -13,15 +13,17 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.example.demo.dto.DefaultError;
 import com.example.demo.dto.StandartError;
+import com.example.demo.universal.textos.Exceptions;
 
 @ControllerAdvice
 public class AplicacaoException extends ResponseEntityExceptionHandler {
 	
+
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity handleException(Exception e) {
 		System.out.println("Entro no Erro do Handler");
 		
-		DefaultError error = new DefaultError(HttpStatus.BAD_GATEWAY.value(), "Teve algum error interno por gentileza contatar o suporte");
+		DefaultError error = new DefaultError(HttpStatus.BAD_GATEWAY.value(), Exceptions.MENSSAGEM_DE_ERRO_PRINCIPAL);
 		
 		
 		return new ResponseEntity(error, HttpStatus.BAD_GATEWAY);
@@ -33,7 +35,7 @@ public class AplicacaoException extends ResponseEntityExceptionHandler {
 		StandartError err = new StandartError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(HttpStatus.NOT_FOUND.value());
-		err.setError("Sem registro do coletivo citado");
+		err.setError(Exceptions.TEXTO_ERROR_COLETIVO_NAO_ENCONTRADO);
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
@@ -44,7 +46,7 @@ public class AplicacaoException extends ResponseEntityExceptionHandler {
 		StandartError err = new StandartError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(HttpStatus.NOT_FOUND.value());
-		err.setError("Verifique se todos os campos estão completos");
+		err.setError(Exceptions.TEXTO_ERROR_COLETIVO_NAO_SALVO);
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
@@ -55,7 +57,7 @@ public class AplicacaoException extends ResponseEntityExceptionHandler {
 		StandartError err = new StandartError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(HttpStatus.NOT_FOUND.value());
-		err.setError("Verifique se todos os campos estão completos");
+		err.setError(Exceptions.TEXTO_ERROR_PLACA_EXISTENTE);
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
@@ -66,7 +68,7 @@ public class AplicacaoException extends ResponseEntityExceptionHandler {
 		StandartError err = new StandartError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(HttpStatus.NOT_FOUND.value());
-		err.setError("Verifique se todos os campos estão completos");
+		err.setError(Exceptions.TEXTO_ERROR_DOCUMENTO_EXISTENTE);
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
@@ -77,7 +79,7 @@ public class AplicacaoException extends ResponseEntityExceptionHandler {
 		StandartError err = new StandartError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(HttpStatus.NOT_FOUND.value());
-		err.setError("Verifique se todos os campos estão completos");
+		err.setError(Exceptions.TEXTO_ERROR_PREFIXO_EXISTENTE);
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
