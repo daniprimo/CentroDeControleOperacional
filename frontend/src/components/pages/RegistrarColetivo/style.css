@@ -73,6 +73,7 @@
     align-items: center;
     margin-top: 55%;
     margin-left: 100%;
+    margin-right: 5px;
 }
 
 .divTable tbody tr:hover > td {
