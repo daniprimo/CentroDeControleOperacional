@@ -11,6 +11,12 @@ export interface coletivo {
 
 }
 
+export interface blocoColetivo {
+    placa: string;
+    prefixo: string;
+    doc: string;
+}
+
 export const  registraColetivo = (data: coletivo) => {
     const url = '/coletivo';
     return api.post(url,data);
@@ -18,6 +24,21 @@ export const  registraColetivo = (data: coletivo) => {
 
 export const buscarTodosColetivos = () => {
     const url = '/coletivo';
+    return api.get(url);
+}
+
+export const buscarColetivoPeloPrefixo = (prefixo: string) => {
+    const url = `/coletivo/${prefixo}`;
+    return api.get(url);
+}
+
+export const buscarColetivoPeloPlaca = (placa: string) => {
+    const url = `/coletivo/${placa}`;
+    return api.get(url);
+}
+
+export const buscarColetivoPeloDoc = (documento: string) => {
+    const url = `/coletivo/${documento}`;
     return api.get(url);
 }
 
