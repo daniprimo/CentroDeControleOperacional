@@ -95,6 +95,7 @@ public class ColetivoService extends ValidacoesColetivo {
 	public void deletarColetivoPorPrefixo (String  prefixo) {
 		Coletivo coletivoAtual = pesquisarColetivoPorPrefixo(prefixo);
 		coletivoRepository.delete(coletivoAtual);
+		
 	}
 	
 }
