@@ -1,0 +1,12 @@
+.CardPrincipal {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #2f575735;
+  align-items: space-between;
+  height: max-content;
+  width: 96%;
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding-left: 2%;
+}

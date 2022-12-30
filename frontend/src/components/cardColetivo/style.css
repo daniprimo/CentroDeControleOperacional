@@ -1,0 +1,42 @@
+.CardApresentacao {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(12, 227, 223);
+  height: max-content;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-right: 2%;
+  padding-right: 2%;
+  padding-bottom: 2%;
+  border-radius: 20px;
+}
+
+.PrefixoEPlaca {
+  display: flex;
+  flex-grow: row;
+}
+
+.Prefixo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 7%;
+  margin-left: 5%;
+}
+
+.Placa {
+  display: flex;
+  flex-direction: column;
+  margin-top: 7%;
+  margin-left: 10%;
+}
+
+.Documento {
+  display: flex;
+  flex-grow: row;
+  margin-top: 2%;
+  margin-left: 5%;
+}
+
+.Documento h2 {
+  margin-left: 3%;
+}
