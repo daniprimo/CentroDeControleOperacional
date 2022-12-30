@@ -8,28 +8,32 @@ export interface props {
     onChange?: any;
 }
 
+
+function res() {
+    alert("aaaaaaa");
+}
+
 export default function CardColetivo(props: props) {
     return (
         <>
-            <div className={'CardApresentacao'}>
-                <div className='PrefixoEPlaca'>
-                    <div className='Prefixo'>
-                        <h4>Prefixo:</h4>
-                        <h2>{props.prefixo}</h2>
+                <div className={'CardApresentacao'} onClick={() => null}>
+                    <div className='PrefixoEPlaca'>
+                        <div className='Prefixo'>
+                            <p className='TituloPrefixo'>Prefixo:</p>
+                            <p className='ValorPrefixo'>{props.prefixo}</p>
+                        </div>
+                        <div className='Placa'>
+                            <p className='TituloPlaca'>Placa:</p>
+                            <p className='ValorPlaca' style={{fontSize: ''}}>{props.placa}</p>
+                        </div>
                     </div>
-                    <div className='Placa'>
-                        <h4>Placa:</h4>
-                        <h2>{props.placa}</h2>
+
+                    <div className='Documento'>
+                        <p className='TituloDocumento'>Documento:</p>
+                        <p className='ValorDocumento'>{props.documento}</p>
                     </div>
+
                 </div>
-
-                <div className='Documento'>
-                    <h4>Documento:</h4>
-                    <h2>{props.documento}</h2>
-                </div>
-
-            </div>
-
         </>
     )
 }   

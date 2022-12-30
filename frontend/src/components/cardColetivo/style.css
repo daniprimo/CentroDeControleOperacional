@@ -1,7 +1,8 @@
 .CardApresentacao {
   display: flex;
   flex-direction: column;
-  background-color: rgb(12, 227, 223);
+  background-color: #c7bebef4;
+  width: auto;
   height: max-content;
   margin-top: 2%;
   margin-bottom: 2%;
@@ -9,6 +10,15 @@
   padding-right: 2%;
   padding-bottom: 2%;
   border-radius: 20px;
+  border:3px solid rgb(21, 21, 19);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.CardApresentacao:hover {
+  background-color: #7b7171c3;
+  transform: scale(1.1);
+  transition: all 0.5s;
 }
 
 .PrefixoEPlaca {
@@ -23,6 +33,26 @@
   margin-left: 5%;
 }
 
+.ValorPrefixo {
+  font-size: 3vh;
+  font-weight: bold;
+}
+
+
+.ValorPlaca
+ {
+  font-size: 3vh;
+  font-weight: bold;
+
+}
+
+.ValorDocumento {
+  font-size: 3vh;
+  font-weight: bold;
+  margin-left: 3%;
+
+}
+
 .Placa {
   display: flex;
   flex-direction: column;
@@ -35,8 +65,23 @@
   flex-grow: row;
   margin-top: 2%;
   margin-left: 5%;
+  margin-inline: 5%;
 }
 
-.Documento h2 {
-  margin-left: 3%;
-}
+
+@media (max-width: 600px) {
+  .CardApresentacao {
+     width: 100%;
+     align-items: center;
+   }
+   .Prefixo {
+     display: flex;
+     flex-direction: row;
+     margin-left: -5%;
+     }
+   .Placa {
+     display: flex;
+     flex-direction: row;
+     margin-left: 20%;
+     }
+ }
