@@ -24,7 +24,7 @@ export default function Consultar() {
 
 
                 <div className='filtros'>
-                    <Input label='Prefixo:' placeholder='Digite' type='text' onChange={(e: string) => setFilter(e.target.value)} name={''} />
+                    <Input label='Prefixo:' placeholder='Digite' type='text' onChange={(e: any) => setFilter(e.target.value)} name={''} />
 
                     <div className='selectStatus'>
                         <label htmlFor='status'>Status: </label>
