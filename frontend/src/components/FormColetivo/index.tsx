@@ -107,7 +107,7 @@ export default function Formulario() {
                 <div className='selectOperando'>
                     <label htmlFor='status'>Status: </label>
                     <select name="status"value={status} onChange={(e) => setStatus(e.target.value)}>
-                        <option value="operando">Operando</option>
+                        <option value="Operando">Operando</option>
                         <option value="Parado">Parado</option>
                         <option value="emmanutencao">Em Manutenção</option>
                     </select>
@@ -117,7 +117,7 @@ export default function Formulario() {
                     <Button name='Salvar' onClick={onSubmit} onSubmit={onSubmit}/>
                 </div>
                 <div className='botaoExcluir'>
-                    <Button name='Excluir' onClick={excluir} onSubmit={excluir}/>
+                    <Button name='Excluir' onClick={excluir} onSubmit={onSubmit}/>
                 </div>
 
 

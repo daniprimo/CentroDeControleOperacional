@@ -2,15 +2,18 @@ import { useEffect, useState } from 'react';
 import { Coletivo } from '../../../model/Coletivo';
 import { buscarTodosColetivos } from '../../../service';
 import CardColetivo from '../../cardColetivo';
+import Input from '../../Input';
 import './style.css';
 
 export default function Consultar() {
 
     const [coletivo, setColetivo] = useState<Coletivo[]>([]);
+    const [filter, setFilter] = useState('');
+    const [filterStatus, setFilterStatus] = useState('');
 
     useEffect(() => {
         buscarTodosColetivos()
-        .then((resp) => {
+            .then((resp) => {
                 setColetivo(resp.data);
             });
     }, []);
@@ -18,7 +21,23 @@ export default function Consultar() {
     return (
         <>
             <div className='CardPrincipal'>
-                {coletivo.map(coletivo => {
+
+
+                <div className='filtros'>
+                    <Input label='Prefixo:' placeholder='Digite' type='text' onChange={(e: string) => setFilter(e.target.value)} name={''} />
+
+                    <div className='selectStatus'>
+                        <label htmlFor='status'>Status: </label>
+                        <select name="status" onChange={(e) => setFilterStatus(e.target.value)}>
+                            <option value=''>Todos</option>
+                            <option value="Operando">Operando</option>
+                            <option value="Parado">Parado</option>
+                            <option value="emmanutencao">Em Manutenção</option>
+                        </select>
+                    </div>
+                </div>
+
+                {coletivo.filter(result => result.prefixo.includes(filter) && result.status.includes(filterStatus)).map(coletivo => {
                     return (
                         <>
                             <CardColetivo
@@ -29,7 +48,11 @@ export default function Consultar() {
                             ></CardColetivo>
                         </>
                     )
-                })}
+                })
+
+                }
+
+
             </div>
         </>
     )

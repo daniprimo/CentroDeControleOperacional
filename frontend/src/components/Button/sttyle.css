@@ -1,12 +1,11 @@
 .button button {
-    margin-top: 2%;
-    background-color: #ffff;
-    font-size: 100%;
-    padding: 3%;
+    display: flex;
+    padding: 2vh;
+    flex-direction: row-reverse;
+    margin-left: 80vh;
+    background-color: rgb(109, 107, 107);
+    color: aliceblue;
     border-radius: 20%;
-    margin-left: 80%;
-    border: 2px solid #e7e7e7;
-    cursor: pointer;
 }
 
 .button button:hover {

@@ -89,9 +89,7 @@ export default function FormularioRegistrar() {
                     </select>
                 </div>
 
-                <div className='botaoSalvar'>
                     <Button name='Adicionar' onClick={onSubmit} onSubmit={onSubmit} />
-                </div>
 
 
             </div>

@@ -10,6 +10,44 @@
   margin-top: 2%;
   margin-bottom: 2%;
   padding-left: 2%;
-  border:1px solid black;
+  border: 1px solid black;
+}
+
+.filtros {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
+.filtros label {
+  font-size: 2.7vh;
+  margin-left: 1vh;
+}
+
+.filtros input {
+  margin-top: 1vh;
+}
+
+.filtros input::placeholder {
+    font-size: 70%;
+}
+
+.filtros div {
+  width: 50%;
+  height: max-content;
+}
+
+.selectStatus label {
+  font-size: 2.7vh;
+}
+
+.selectStatus select {
+  display: flex;
+  flex-direction: row;
+  font-size: 2.5vh;
+  margin-top: 1vh;
+  width: 30vh;
 
 }
