@@ -1,13 +1,42 @@
-input {
+.CardFormulario input {
     width: 90%;
     margin-top: 2%;
-    margin-bottom: 3%;
-
+    margin-bottom: 5%;
+    border: none;
+    border-bottom: 2px solid black;
+    height: 10vh;
+    
 }
 
-label {
-    color: #fff;  
-    margin-left: 2%;
-  
 
+
+.imagem  {
+    display: flex;
+    height: 25vh;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    
+    
+}
+
+.corDoInput {
+    font-size: 4vh;
+    color: black;  
+    margin-left: 2%;
+}
+
+.corDoInput label {
+    color: black;  
+    margin-left: 2%;
+}
+
+.selectOperando select {
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+    width: 50vh;
 }

@@ -33,7 +33,7 @@ export const buscarColetivoPeloPrefixo = (prefixo: string) => {
 }
 
 export const buscarColetivoPeloPlaca = (placa: string) => {
-    const url = `/coletivo/${placa}`;
+    const url = `/coletivo/placa=${placa}`;
     return api.get(url);
 }
 
@@ -45,4 +45,9 @@ export const buscarColetivoPeloDoc = (documento: string) => {
 export const excluirColetivo = (id: number) => {
     const url = `/coletivo/${id}`;
     return api.delete(url);
+}
+
+export const editarColetivo = (id: number, data: coletivo) => {
+    const url = `/coletivo/${id}`;
+    return api.put(url, data);
 }

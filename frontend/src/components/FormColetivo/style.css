@@ -1,0 +1,33 @@
+.CardFormulario {
+  display: flex;
+  flex-wrap: wrap;
+  height: max-content;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border: 1px solid black;
+}
+
+.CardFormulario div {
+  margin-left: 3vh;
+  margin-top: 2vh;
+}
+
+.botaoSalvar button {
+  display: flex;
+  padding: 2vh;
+  flex-direction: row-reverse;
+  margin-left: 80vh;
+  background-color: rgb(109, 107, 107);
+  color: aliceblue;
+}
+
+.botaoExcluir button {
+  display: flex;
+  padding: 2vh;
+  flex-direction: row-reverse;
+  margin-left: 1vh;
+  background-color: rgb(236, 13, 13);
+  color: aliceblue;
+}

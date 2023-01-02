@@ -1,0 +1,15 @@
+.CardFormulario {
+  display: flex;
+  flex-wrap: wrap;
+  height: max-content;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border: 1px solid black;
+}
+
+.CardFormulario div {
+  margin-left: 3vh;
+  margin-top: 2vh;
+}

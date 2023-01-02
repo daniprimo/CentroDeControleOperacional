@@ -6,6 +6,7 @@ export interface props {
   placeholder: string;
   type: string;
   name: string;
+  value?: string;
   onChange?: any;
 }
 
@@ -15,7 +16,7 @@ export default function Input(props: props){
       <form>
         <div>
           <label>{props.label}</label>
-          <input type={props.type} placeholder={props.placeholder} onChange={props.onChange}></input>
+          <input className='corDoInput' type={props.type} placeholder={props.placeholder} onChange={props.onChange} value={props.value}></input>
         </div>
       </form>
     </>

@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
+import Formulario from '../components/FormColetivo';
 import NavBar from '../components/Navbar';
 import Consultar from '../components/pages/ConsultaColetivo';
 import Home from '../components/pages/Home';
@@ -13,6 +14,7 @@ export default function Rotas() {
                     <Route path='/' element={<Home />} />
                     <Route path='/Registrar' element={<Registrar />} />
                     <Route path='/Consultar' element={<Consultar />} />
+                    <Route path='/Formulario' element={<Formulario />} />
                 </Routes>
             </Router>
         </>
