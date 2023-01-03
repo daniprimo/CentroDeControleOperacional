@@ -46,14 +46,14 @@ public class ColetivoService extends ValidacoesColetivo {
 		}catch (PlacaExistenteException e) {
 			throw new ColetivoComPlacaCitadaJaExiste("Placa já existente");
 		}catch (DocumentoExistenteException e) {
-			throw new ColetivoComDocumentoCitadaJaExiste("Documento já existente");
+			throw new ColetivoComDocumentoCitadaJaExiste("Documento ja existente");
 		}
 		catch (Exception e) {		
 			throw new ColetivoNaoFoiSalvoException("Coletivo não foi salvo");
 		}	
 	}	
 
-	
+
 	public Coletivo pesquisarColetivoPorId (Long id) {
 		Optional<Coletivo> optional = coletivoRepository.findById(id);
 		return optional.orElseThrow(()  -> new EntityNotFoundException("Coletivo não encontrado"));

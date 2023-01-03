@@ -30,7 +30,6 @@ import com.example.demo.service.validacoes.ValidacoesColetivo;
 public class ColetivoController {
 	
 	@Autowired
-	@Lazy
 	private ColetivoService coletivoService;
 	
 	public ColetivoController(ColetivoService coletivoService) {
