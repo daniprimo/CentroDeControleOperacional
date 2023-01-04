@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entities.Coletivo;
 
+
 @Repository
 public interface ColetivoRepository extends JpaRepository<Coletivo, Long> {
 	

@@ -28,12 +28,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.demo.entities.Coletivo;
-import com.example.demo.exceptions.ColetivoComDocumentoCitadaJaExiste;
-import com.example.demo.exceptions.ColetivoComPlacaCitadaJaExiste;
-import com.example.demo.exceptions.ColetivoComPrefixoCitadoJaExiste;
-import com.example.demo.exceptions.ColetivoNaoFoiSalvoException;
-import com.example.demo.exceptions.EntityNotFoundException;
-import com.example.demo.exceptions.excessoes.DocumentoExistenteException;
+import com.example.demo.entities.exceptions.ColetivoComDocumentoCitadaJaExiste;
+import com.example.demo.entities.exceptions.ColetivoComPlacaCitadaJaExiste;
+import com.example.demo.entities.exceptions.ColetivoComPrefixoCitadoJaExiste;
+import com.example.demo.entities.exceptions.ColetivoNaoFoiSalvoException;
+import com.example.demo.entities.exceptions.EntityNotFoundException;
+import com.example.demo.entities.exceptions.excessoes.DocumentoExistenteException;
 import com.example.demo.repository.ColetivoRepository;
 
 @RunWith(SpringRunner.class)

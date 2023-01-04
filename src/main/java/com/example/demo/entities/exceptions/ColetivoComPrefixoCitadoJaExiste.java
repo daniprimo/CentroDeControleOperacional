@@ -1,11 +1,9 @@
-package com.example.demo.exceptions;
+package com.example.demo.entities.exceptions;
 
-import com.example.demo.exceptions.excessoes.ColetivoException;
+import com.example.demo.entities.exceptions.excessoes.ColetivoException;
 
 public class ColetivoComPrefixoCitadoJaExiste extends ColetivoException {
 
-
-	
 	/**
 	 * 
 	 */

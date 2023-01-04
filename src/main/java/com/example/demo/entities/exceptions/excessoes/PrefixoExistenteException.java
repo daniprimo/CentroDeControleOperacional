@@ -1,16 +1,16 @@
-package com.example.demo.exceptions.excessoes;
+package com.example.demo.entities.exceptions.excessoes;
 
-public class DocumentoExistenteException extends Exception {
-
+public class PrefixoExistenteException extends Exception {
+	
 	
 private static final long serialVersionUID = 1L;
 	
 	private String message;
 	
-	public DocumentoExistenteException() {
+	public PrefixoExistenteException() {
 	}
 
-	public DocumentoExistenteException(String message) {
+	public PrefixoExistenteException(String message) {
 		this.message = message;
 	}
 
@@ -22,4 +22,5 @@ private static final long serialVersionUID = 1L;
 		this.message = message;
 	}
 	
+
 }

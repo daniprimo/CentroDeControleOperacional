@@ -6,52 +6,53 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
 import com.example.demo.entities.Coletivo;
-import com.example.demo.exceptions.excessoes.DocumentoExistenteException;
-import com.example.demo.exceptions.excessoes.PlacaExistenteException;
-import com.example.demo.exceptions.excessoes.PrefixoExistenteException;
+import com.example.demo.entities.exceptions.excessoes.DocumentoExistenteException;
+import com.example.demo.entities.exceptions.excessoes.PlacaExistenteException;
+import com.example.demo.entities.exceptions.excessoes.PrefixoExistenteException;
 import com.example.demo.repository.ColetivoRepository;
 
 public class ValidacoesColetivo {
 	
 	@Lazy
 	@Autowired
-	private ColetivoRepository coletivoRepository;	
+	private static ColetivoRepository coletivoRepository;	
 	
 	public ValidacoesColetivo(ColetivoRepository coletivoRepository) {
-		this.coletivoRepository = coletivoRepository;
-	}
-
-	private void validandoSeOPrefixoExiste(Coletivo coletivo) throws PrefixoExistenteException {
-			Optional<Coletivo> encontrado  = coletivoRepository.findByPrefixo(coletivo.getPrefixo());
-			
-			if (!encontrado.isEmpty()) 
-				 throw new PrefixoExistenteException();
+		ValidacoesColetivo.coletivoRepository = coletivoRepository;
 	}
 	
-	private void validandoSeOPlacaExiste(Coletivo coletivo) throws PlacaExistenteException {
-		Boolean encontrado  = coletivoRepository.findByPlaca(coletivo.getPlaca()).isEmpty();
+		
+
+
+
+	
+	public static void validandoSeOPrefixoExiste(String prefixo) throws PrefixoExistenteException {
+		Optional<Coletivo> encontrado  = coletivoRepository.findByPrefixo(prefixo);
+		
+		if (!encontrado.isEmpty()) 
+			 throw new PrefixoExistenteException();
+	}
+	
+
+	
+	public static void validandoSeOPlacaExiste (String placa) throws PlacaExistenteException {
+		Boolean encontrado  = coletivoRepository.findByPlaca(placa).isEmpty();
 
 		if (!encontrado) 
 			throw new PlacaExistenteException();
 
 	}
+
 	
-	private void validandoSeODocExiste(Coletivo coletivo) throws DocumentoExistenteException {
-		Boolean encontrado  = coletivoRepository.findByDoc(coletivo.getDoc()).isEmpty();
+	public static void validandoSeODocExiste(String doc) throws DocumentoExistenteException {
+		Boolean encontrado  = coletivoRepository.findByDoc(doc).isEmpty();
 		
 		if (!encontrado) 
 			throw new DocumentoExistenteException();
 
 	}
+
 	
-	public void ValidacaoSeExisteInformaçõesRepetidas(Coletivo coletivo) throws Exception {
-		if (coletivo.getPlaca() == "" | coletivo.getPrefixo() == "" | coletivo.getModelo() == "")
-			throw new Exception();
-		
-		validandoSeOPrefixoExiste(coletivo);
-		validandoSeOPlacaExiste(coletivo);
-		validandoSeODocExiste(coletivo);
-		
-	}
+	
 
 }

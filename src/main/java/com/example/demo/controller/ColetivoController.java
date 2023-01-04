@@ -1,10 +1,8 @@
 package com.example.demo.controller;
 
-import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,16 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Coletivo;
-import com.example.demo.exceptions.EntityNotFoundException;
-import com.example.demo.repository.ColetivoRepository;
+import com.example.demo.entities.exceptions.excessoes.PrefixoExistenteException;
+import com.example.demo.interfaces.Transporte;
 import com.example.demo.service.ColetivoService;
-import com.example.demo.service.validacoes.ValidacoesColetivo;
 
 @RestController
 @RequestMapping("/coletivo")
@@ -44,7 +39,7 @@ public class ColetivoController {
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public ResponseEntity<Coletivo> adiionarColetivo(@RequestBody Coletivo coletivo) {
+	public ResponseEntity<Coletivo> adiionarColetivo(@RequestBody Coletivo coletivo) throws PrefixoExistenteException {
 				Coletivo coletivoAlterado = coletivoService.adicionar(coletivo);
 				return ResponseEntity.ok(coletivoAlterado);		
 		
@@ -59,6 +54,12 @@ public class ColetivoController {
 	@GetMapping("placa={placa}")
 	public ResponseEntity<Coletivo> consultarColetivoPelaPlaca(@PathVariable String placa){
 		Coletivo coletivo = coletivoService.pesquisarColetivoPorPlaca(placa);
+		return ResponseEntity.ok(coletivo);
+	}
+	
+	@GetMapping("{prefixo}")
+	public ResponseEntity<Coletivo> consultarColetivoPeloPrefixo(@PathVariable String prefixo){
+		Coletivo coletivo = coletivoService.pesquisarColetivoPorPrefixo(prefixo);
 		return ResponseEntity.ok(coletivo);
 	}
 	

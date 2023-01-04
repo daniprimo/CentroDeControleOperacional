@@ -9,9 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.demo.entities.exceptions.excessoes.DocumentoExistenteException;
+import com.example.demo.entities.exceptions.excessoes.PlacaExistenteException;
+import com.example.demo.entities.exceptions.excessoes.PrefixoExistenteException;
+import com.example.demo.interfaces.Transporte;
+import com.example.demo.service.validacoes.ValidacoesColetivo;
+
 @Entity
 @Table(name = "tb_coletivo")
-public class Coletivo {
+public class Coletivo implements Transporte {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +34,9 @@ public class Coletivo {
 	private String doc;
 	@Column(nullable = false)
 	private String status;
+	
+	
+	
 	
 	public Coletivo(Long id, String placa, String prefixo, String modelo, String cor, String doc, String status) {
 		this.id = id;
@@ -113,6 +122,14 @@ public class Coletivo {
 		Coletivo other = (Coletivo) obj;
 		return Objects.equals(doc, other.doc) && Objects.equals(id, other.id) && Objects.equals(modelo, other.modelo)
 				&& Objects.equals(placa, other.placa) && Objects.equals(prefixo, other.prefixo);
+	}
+	
+	public void validacao () throws PrefixoExistenteException, PlacaExistenteException, DocumentoExistenteException{
+			ValidacoesColetivo.validandoSeOPrefixoExiste(this.getPrefixo());
+			ValidacoesColetivo.validandoSeOPlacaExiste(this.getPlaca());
+			ValidacoesColetivo.validandoSeODocExiste(this.getDoc());
+	
+			
 	}
 	
 	

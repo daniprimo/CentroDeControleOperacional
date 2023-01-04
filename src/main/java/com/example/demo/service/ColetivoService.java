@@ -7,19 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Coletivo;
-import com.example.demo.exceptions.ColetivoComDocumentoCitadaJaExiste;
-import com.example.demo.exceptions.ColetivoComPlacaCitadaJaExiste;
-import com.example.demo.exceptions.ColetivoComPrefixoCitadoJaExiste;
-import com.example.demo.exceptions.ColetivoNaoFoiSalvoException;
-import com.example.demo.exceptions.EntityNotFoundException;
-import com.example.demo.exceptions.excessoes.DocumentoExistenteException;
-import com.example.demo.exceptions.excessoes.PlacaExistenteException;
-import com.example.demo.exceptions.excessoes.PrefixoExistenteException;
+import com.example.demo.entities.exceptions.ColetivoComDocumentoCitadaJaExiste;
+import com.example.demo.entities.exceptions.ColetivoComPlacaCitadaJaExiste;
+import com.example.demo.entities.exceptions.ColetivoComPrefixoCitadoJaExiste;
+import com.example.demo.entities.exceptions.ColetivoNaoFoiSalvoException;
+import com.example.demo.entities.exceptions.EntityNotFoundException;
+import com.example.demo.entities.exceptions.excessoes.DocumentoExistenteException;
+import com.example.demo.entities.exceptions.excessoes.PlacaExistenteException;
+import com.example.demo.entities.exceptions.excessoes.PrefixoExistenteException;
+import com.example.demo.interfaces.Transporte;
 import com.example.demo.repository.ColetivoRepository;
 import com.example.demo.service.validacoes.ValidacoesColetivo;
 
 @Service
-public class ColetivoService extends ValidacoesColetivo {
+public class ColetivoService  extends ValidacoesColetivo implements Transporte {
 	
 	@Autowired
 	private ColetivoRepository coletivoRepository;
@@ -37,20 +38,19 @@ public class ColetivoService extends ValidacoesColetivo {
 	}
 	
 	
-	public Coletivo adicionar (Coletivo coletivo) {
-		try {
-			ValidacaoSeExisteInformaçõesRepetidas(coletivo);
-			return coletivoRepository.save(coletivo);			
-		}catch (PrefixoExistenteException e) {
-			throw new ColetivoComPrefixoCitadoJaExiste("Prefixo já existente");
-		}catch (PlacaExistenteException e) {
-			throw new ColetivoComPlacaCitadaJaExiste("Placa já existente");
-		}catch (DocumentoExistenteException e) {
-			throw new ColetivoComDocumentoCitadaJaExiste("Documento ja existente");
-		}
-		catch (Exception e) {		
-			throw new ColetivoNaoFoiSalvoException("Coletivo não foi salvo");
-		}	
+	public Coletivo adicionar (Coletivo coletivo){
+			try {
+				coletivo.validacao();
+				return coletivoRepository.save(coletivo);
+			}catch (PrefixoExistenteException e) {
+				throw new ColetivoComPrefixoCitadoJaExiste("Prefixo já existente");
+			}catch (PlacaExistenteException e) {
+				throw new ColetivoComPlacaCitadaJaExiste("Placa já existente");
+			}catch (DocumentoExistenteException e) {
+				throw new ColetivoComDocumentoCitadaJaExiste("Documento ja existente");
+			}
+				
+
 	}	
 
 

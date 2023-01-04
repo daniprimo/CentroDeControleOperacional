@@ -1,17 +1,15 @@
-package com.example.demo.exceptions.excessoes;
+package com.example.demo.entities.exceptions.excessoes;
 
-public class PlacaExistenteException extends Exception {
+public class ColetivoException extends RuntimeException {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
 	private String message;
-	
-	public PlacaExistenteException() {
-	}
 
-	public PlacaExistenteException(String message) {
+	public ColetivoException(String message) {
 		this.message = message;
 	}
 
@@ -22,6 +20,9 @@ public class PlacaExistenteException extends Exception {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	
+	
 
 	
 }
