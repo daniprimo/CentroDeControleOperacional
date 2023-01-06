@@ -1,4 +1,4 @@
-package com.example.demo.service.validacoes;
+package com.example.demo.entities.validacoes;
 
 import java.util.Optional;
 
@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
 import com.example.demo.entities.Coletivo;
-import com.example.demo.entities.exceptions.excessoes.DocumentoExistenteException;
-import com.example.demo.entities.exceptions.excessoes.PlacaExistenteException;
-import com.example.demo.entities.exceptions.excessoes.PrefixoExistenteException;
+import com.example.demo.exceptions.excessoes.DocumentoExistenteException;
+import com.example.demo.exceptions.excessoes.PlacaExistenteException;
+import com.example.demo.exceptions.excessoes.PrefixoExistenteException;
 import com.example.demo.repository.ColetivoRepository;
 
 public class ValidacoesColetivo {

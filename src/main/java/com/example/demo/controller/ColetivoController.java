@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Coletivo;
-import com.example.demo.entities.exceptions.excessoes.PrefixoExistenteException;
-import com.example.demo.interfaces.Transporte;
+import com.example.demo.exceptions.excessoes.PrefixoExistenteException;
 import com.example.demo.service.ColetivoService;
 
 @RestController
@@ -32,8 +32,7 @@ public class ColetivoController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Coletivo>> listarColetivos() {
-		 coletivoService.listaColetivos();
+	public ResponseEntity<List<Coletivo>> listarColetivos() throws SQLException {
 		 return ResponseEntity.ok(coletivoService.listaColetivos());
 	}
 	

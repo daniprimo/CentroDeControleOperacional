@@ -1,4 +1,4 @@
-package com.example.demo.entities.exceptions;
+package com.example.demo.exceptions;
 
 import java.time.Instant;
 

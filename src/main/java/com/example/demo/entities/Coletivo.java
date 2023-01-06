@@ -9,11 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.example.demo.entities.exceptions.excessoes.DocumentoExistenteException;
-import com.example.demo.entities.exceptions.excessoes.PlacaExistenteException;
-import com.example.demo.entities.exceptions.excessoes.PrefixoExistenteException;
+import com.example.demo.entities.validacoes.ValidacoesColetivo;
+import com.example.demo.exceptions.excessoes.DocumentoExistenteException;
+import com.example.demo.exceptions.excessoes.PlacaExistenteException;
+import com.example.demo.exceptions.excessoes.PrefixoExistenteException;
 import com.example.demo.interfaces.Transporte;
-import com.example.demo.service.validacoes.ValidacoesColetivo;
 
 @Entity
 @Table(name = "tb_coletivo")
@@ -38,7 +38,7 @@ public class Coletivo implements Transporte {
 	
 	
 	
-	public Coletivo(Long id, String placa, String prefixo, String modelo, String cor, String doc, String status) {
+	public Coletivo(Long id, String prefixo, String placa, String modelo, String cor, String doc, String status) {
 		this.id = id;
 		this.placa = placa;
 		this.prefixo = prefixo;
@@ -48,7 +48,7 @@ public class Coletivo implements Transporte {
 		this.status = status;
 	}
 
-	public Coletivo(Long id, String placa, String prefixo, String modelo, String doc) {
+	public Coletivo(Long id, String prefixo, String placa, String modelo, String doc) {
 		this.id = id;
 		this.placa = placa;
 		this.prefixo = prefixo;
@@ -59,6 +59,17 @@ public class Coletivo implements Transporte {
 	public Coletivo() {
 	}
 	
+	
+	
+	public Coletivo(String prefixo, String placa, String modelo, String cor, String doc, String status) {
+		this.placa = placa;
+		this.prefixo = prefixo;
+		this.modelo = modelo;
+		this.cor = cor;
+		this.doc = doc;
+		this.status = status;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -1,6 +1,6 @@
-package com.example.demo.entities.exceptions;
+package com.example.demo.exceptions;
 
-import com.example.demo.entities.exceptions.excessoes.ColetivoException;
+import com.example.demo.exceptions.excessoes.ColetivoException;
 
 public class EntityNotFoundException extends ColetivoException {
 
