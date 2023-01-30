@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +29,14 @@ public class ColetivoController {
 	@Autowired
 	private ColetivoService coletivoService;
 	
+	
 	public ColetivoController(ColetivoService coletivoService) {
 		this.coletivoService = coletivoService;
+		
 	}
-
+	
 	@GetMapping
+	@Transactional
 	public ResponseEntity<List<Coletivo>> listarColetivos() throws SQLException {
 		 return ResponseEntity.ok(coletivoService.listaColetivos());
 	}
@@ -39,35 +44,28 @@ public class ColetivoController {
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ResponseEntity<Coletivo> adiionarColetivo(@RequestBody Coletivo coletivo) throws PrefixoExistenteException {
-				Coletivo coletivoAlterado = coletivoService.adicionar(coletivo);
-				return ResponseEntity.ok(coletivoAlterado);		
-		
+				return ResponseEntity.ok( coletivoService.adicionar(coletivo));				
 	}
 	
 	@GetMapping("id={id}")
 	public ResponseEntity<Coletivo> consultarColetivoPeloId(@PathVariable Long id){
-		Coletivo coletivo = coletivoService.pesquisarColetivoPorId(id);
-		return ResponseEntity.ok(coletivo);
+		return ResponseEntity.ok(coletivoService.pesquisarColetivoPorId(id));
 	}
 	
 	@GetMapping("placa={placa}")
 	public ResponseEntity<Coletivo> consultarColetivoPelaPlaca(@PathVariable String placa){
-		Coletivo coletivo = coletivoService.pesquisarColetivoPorPlaca(placa);
-		return ResponseEntity.ok(coletivo);
+		return ResponseEntity.ok(coletivoService.pesquisarColetivoPorPlaca(placa));
 	}
 	
 	@GetMapping("{prefixo}")
 	public ResponseEntity<Coletivo> consultarColetivoPeloPrefixo(@PathVariable String prefixo){
-		Coletivo coletivo = coletivoService.pesquisarColetivoPorPrefixo(prefixo);
-		return ResponseEntity.ok(coletivo);
+		return ResponseEntity.ok(coletivoService.pesquisarColetivoPorPrefixo(prefixo));
 	}
 	
 	@PutMapping("{id}")
 	public ResponseEntity<Coletivo> alterarColetivo(@RequestBody Coletivo coletivo,@PathVariable Long id){
-	 Coletivo alterado = coletivoService.alterarColetivoPorId(coletivo, id);
-	return ResponseEntity.ok(alterado);
+	return ResponseEntity.ok(coletivoService.alterarColetivoPorId(coletivo, id));
 	}
-	
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<Coletivo> deletarColetivo(@PathVariable Long id){

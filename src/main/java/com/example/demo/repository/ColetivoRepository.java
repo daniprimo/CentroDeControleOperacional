@@ -17,4 +17,5 @@ public interface ColetivoRepository extends JpaRepository<Coletivo, Long> {
 
 	Optional<Coletivo> findByDoc (String doc);
 	
+	
 }

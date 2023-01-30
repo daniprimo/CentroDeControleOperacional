@@ -16,7 +16,7 @@ import com.example.demo.dto.StandartError;
 import com.example.demo.universal.textos.Exceptions;
 
 @ControllerAdvice
-public class AplicacaoException extends ResponseEntityExceptionHandler {
+public class RestTemplateHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity handleException(Exception e) {
