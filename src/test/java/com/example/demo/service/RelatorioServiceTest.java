@@ -11,10 +11,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.dto.coletivoDtos.RelatorioColetivo;
 import com.example.demo.repository.RelatorioRepository;
 
+@SpringBootTest
 class RelatorioServiceTest {
 	
 	@Mock

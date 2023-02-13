@@ -1,4 +1,4 @@
-package com.example.demo.configuracao;
+package com.example.demo.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +17,7 @@ import com.example.demo.entities.Coletivo;
 import com.example.demo.repositoryJDBC.RepositoryJDBC;
 
 @Component
-public class ColetivoRepositoyJDBC implements RepositoryJDBC {
+public class ColetivoServiceJDBC implements RepositoryJDBC {
 	
 	@Autowired
 	private Connection connection;
